@@ -50,9 +50,8 @@ As an example, I have downladed a shapefile iwth the [Denmark's Administrative G
 
 ```{r get_data}
 
-get_SDE_data(ftp_folder = "landinddelinger/dagi/SHAPE",
-             file_name  = "DAGIREF_SHAPE_UTM32-EUREF89.zip",
-             out_folder = "data/DAGI",
-             userpwd = SDE_user)
+get_SDE_data(ftp_folder = "CORINE",
+    file_name  = "DK_CORINE_SHP_UTM32-WGS84.zip",
+    out_folder = "CORINE")
 
 ```
