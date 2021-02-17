@@ -1,0 +1,16 @@
+Package: dangeo
+Title: Download geodata from Denmark 
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Javier",
+           family = "Elio",
+           role = c("aut", "cre"),
+           email = "javierdem@plan.aau.dk",
+           comment = c(ORCID = "0000-0003-0624-2345"))
+Description: Conection to with the kortforsyningen FTP for getting geodata from Denmark. 
+License: `use_mit_license()`
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: curl (>= 4.3)
