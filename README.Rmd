@@ -48,7 +48,7 @@ SDE_user <- paste(Sys.getenv("kortforsyningen_id"), Sys.getenv("kortforsyningen_
 
 As an example, I have downladed a shapefile iwth the [Denmark's Administrative Geographical Division - DAGI](https://download.kortforsyningen.dk/content/geodataprodukter) .
 
-```{r get_data}
+```{r get_data, message = FALSE, eval = FALSE}
 
 get_SDE_data(ftp_folder = "CORINE",
     file_name  = "DK_CORINE_SHP_UTM32-WGS84.zip",
