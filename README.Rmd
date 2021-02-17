@@ -1,0 +1,58 @@
+---
+output:
+  github_document:
+    html_preview: false
+---
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-"
+)
+```
+
+# dangeo
+
+## Overview
+
+Package to access to the Map Supply Download via the kortforsyningen FTP. You would need to create an account on [kortforsyningen](https://www.kortforsyningen.dk/indhold/min-side-0).
+
+## Instalation
+
+## Installation
+
+```{r, eval = FALSE}
+
+if (!require("remotes")) install.packages("remotes")
+remotes::install_github("javiereliomedina/dangeo")
+
+```
+
+## Usage
+
+```{r lbr, message = FALSE}
+  
+library(dangeo) 
+ 
+```
+
+First we would need to set our Username (kortforsyningen_id = "XXX") and Password (kortforsyningen_pwd = "XXX") on .Renviron.
+
+```{r user}
+
+# usethis::edit_r_environ()  # Open .Renviron file, and save the username and password
+SDE_user <- paste(Sys.getenv("kortforsyningen_id"), Sys.getenv("kortforsyningen_pwd"), sep = ":" )
+
+```
+
+As an example, I have downladed a shapefile iwth the [Denmark's Administrative Geographical Division - DAGI](https://download.kortforsyningen.dk/content/geodataprodukter) .
+
+```{r get_data}
+
+get_SDE_data(ftp_folder = "landinddelinger/dagi/SHAPE",
+             file_name  = "DAGIREF_SHAPE_UTM32-EUREF89.zip",
+             out_folder = "data/DAGI",
+             userpwd = SDE_user)
+
+```
