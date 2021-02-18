@@ -39,6 +39,5 @@ Then we can download the shapefiles
 dangeo_get_data(ftp_folder = "CORINE",
     file_name  = "DK_CORINE_SHP_UTM32-WGS84.zip",
     out_folder = "CORINE")
-#> Warning in dir.create(out_folder): 'CORINE' already exists
 #> [1] TRUE
 ```
