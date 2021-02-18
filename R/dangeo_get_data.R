@@ -17,7 +17,7 @@
 #' # Get data
 #'   dangeo_get_data(ftp_folder = "CORINE",
 #'     file_name  = "DK_CORINE_SHP_UTM32-WGS84.zip",
-#'     out_folder = "data/CORINE")
+#'     out_folder = "CORINE")
 #'
 #' @export
 
@@ -32,7 +32,7 @@ dangeo_get_data <- function(ftp_folder = ftp_folder,
 
   # Download
   dl_h <- curl::new_handle()
-  curl::handle_setopt(dl_h, userpwd = my_pwd, ftp_use_epsv = TRUE)
+  curl::handle_setopt(dl_h, userpwd = set_user, ftp_use_epsv = TRUE)
   curl::curl_fetch_disk(url = paste0(ftp_url, file_name),
                         path = paste(out_folder, file_name, sep = "/"),
                         handle = dl_h)
