@@ -29,15 +29,16 @@ and Password (kortforsyningen\_pwd = “XXX”) on .Renviron.
 
 ``` r
 # usethis::edit_r_environ()  # Open .Renviron file, and save the username and password
-SDE_user <- paste(Sys.getenv("kortforsyningen_id"), Sys.getenv("kortforsyningen_pwd"), sep = ":" )
+set_user <- paste(Sys.getenv("kortforsyningen_id"), Sys.getenv("kortforsyningen_pwd"), sep = ":" )
 ```
 
-As an example, I have downladed a shapefile iwth the [Denmark’s
-Administrative Geographical Division -
-DAGI](https://download.kortforsyningen.dk/content/geodataprodukter) .
+Then we can download the shapefiles
+(e.g. *DK\_CORINE\_SHP\_UTM32-WGS84*).
 
 ``` r
-get_SDE_data(ftp_folder = "CORINE",
+dangeo_get_data(ftp_folder = "CORINE",
     file_name  = "DK_CORINE_SHP_UTM32-WGS84.zip",
     out_folder = "CORINE")
+#> Warning in dir.create(out_folder): 'CORINE' already exists
+#> [1] TRUE
 ```

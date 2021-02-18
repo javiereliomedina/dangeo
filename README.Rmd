@@ -42,15 +42,15 @@ First we would need to set our Username (kortforsyningen_id = "XXX") and Passwor
 ```{r user}
 
 # usethis::edit_r_environ()  # Open .Renviron file, and save the username and password
-SDE_user <- paste(Sys.getenv("kortforsyningen_id"), Sys.getenv("kortforsyningen_pwd"), sep = ":" )
+set_user <- paste(Sys.getenv("kortforsyningen_id"), Sys.getenv("kortforsyningen_pwd"), sep = ":" )
 
 ```
 
-As an example, I have downladed a shapefile iwth the [Denmark's Administrative Geographical Division - DAGI](https://download.kortforsyningen.dk/content/geodataprodukter) .
+Then we can download the shapefiles (e.g. *DK_CORINE_SHP_UTM32-WGS84*).
 
-```{r get_data, message = FALSE, eval = FALSE}
+```{r get_data, message = FALSE}
 
-get_SDE_data(ftp_folder = "CORINE",
+dangeo_get_data(ftp_folder = "CORINE",
     file_name  = "DK_CORINE_SHP_UTM32-WGS84.zip",
     out_folder = "CORINE")
 
