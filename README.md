@@ -40,7 +40,6 @@ dangeo_get_data(ftp_folder = "CORINE",
                 zip_name   = "DK_CORINE_SHP_UTM32-WGS84.zip",
                 out_folder = "DK_CORINE_SHP_UTM32-WGS84",
                 file_name  = "CLC12_DK.shp")
-#> Warning in dir.create(out_folder): 'DK_CORINE_SHP_UTM32-WGS84' already exists
 #> Simple feature collection with 12128 features and 7 fields
 #> geometry type:  POLYGON
 #> dimension:      XY
