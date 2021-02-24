@@ -5,20 +5,23 @@
 \title{Function for downloading geodata from kortforsyningen.dk}
 \usage{
 dangeo_get_data(
-  ftp_folder = ftp_folder,
-  file_name = file_name,
-  out_folder = out_folder,
+  ftp_folder = NULL,
+  zip_name = NULL,
+  out_folder = NULL,
+  file_name = NULL,
   userpwd = set_user
 )
 }
 \arguments{
 \item{ftp_folder}{Name of the ftp folder}
 
-\item{file_name}{Name of the file we would like to download}
+\item{zip_name}{Name of the zip file we would like to download}
 
 \item{out_folder}{Name of the local folder where the data will be saved}
 
-\item{SDE_user}{Username and Password (format = USERNAME:PASSWORD)}
+\item{file_name}{Name of the file (e.g. *.shp) we would like to load into R}
+
+\item{userpwd}{Username and Password (format = USERNAME:PASSWORD)}
 }
 \value{
 Data from \url{https://download.kortforsyningen.dk/content/geodataprodukter}
@@ -34,8 +37,9 @@ Function for downloading geodata from kortforsyningen.dk
   set_user <- paste(id, password, sep = ":" )
 
 # Get data
-  dangeo_get_data(ftp_folder = "CORINE",
-    file_name  = "DK_CORINE_SHP_UTM32-WGS84.zip",
-    out_folder = "CORINE")
+dangeo_get_data(ftp_folder = "CORINE",
+                zip_name   = "DK_CORINE_SHP_UTM32-WGS84.zip",
+                out_folder = "DK_CORINE_SHP_UTM32-WGS84",
+                file_name  = "CLC12_DK.shp")
 
 }
