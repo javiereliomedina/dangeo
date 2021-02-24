@@ -7,7 +7,7 @@
 dangeo_get_data(
   ftp_folder = NULL,
   zip_name = NULL,
-  out_folder = NULL,
+  out_folder = rappdirs::user_cache_dir(),
   file_name = NULL,
   userpwd = set_user
 )
@@ -15,16 +15,16 @@ dangeo_get_data(
 \arguments{
 \item{ftp_folder}{Name of the ftp folder}
 
-\item{zip_name}{Name of the zip file we would like to download}
+\item{zip_name}{Name of the zip file we would like to download..}
 
-\item{out_folder}{Name of the local folder where the data will be saved}
+\item{out_folder}{Name of the local folder where the data will be saved (by default it is set to the results of rappdirs::user_cache_dir()).}
 
-\item{file_name}{Name of the file (e.g. *.shp) we would like to load into R}
+\item{file_name}{Name of the file (e.g. *.shp) we would like to load into R.}
 
-\item{userpwd}{Username and Password (format = USERNAME:PASSWORD)}
+\item{userpwd}{Username and Password (format = USERNAME:PASSWORD).}
 }
 \value{
-Data from \url{https://download.kortforsyningen.dk/content/geodataprodukter}
+Data from \url{https://download.kortforsyningen.dk/content/geodataprodukter}.
 }
 \description{
 Function for downloading geodata from kortforsyningen.dk

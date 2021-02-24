@@ -1,12 +1,12 @@
 #' Function for downloading geodata from kortforsyningen.dk
 #'
 #' @param ftp_folder Name of the ftp folder
-#' @param zip_name   Name of the zip file we would like to download
-#' @param out_folder Name of the local folder where the data will be saved
-#' @param file_name  Name of the file (e.g. *.shp) we would like to load into R
-#' @param userpwd    Username and Password (format = USERNAME:PASSWORD)
+#' @param zip_name   Name of the zip file we would like to download..
+#' @param out_folder Name of the local folder where the data will be saved (by default it is set to the results of rappdirs::user_cache_dir()).
+#' @param file_name  Name of the file (e.g. *.shp) we would like to load into R.
+#' @param userpwd    Username and Password (format = USERNAME:PASSWORD).
 #'
-#' @return Data from [https://download.kortforsyningen.dk/content/geodataprodukter](https://download.kortforsyningen.dk/content/geodataprodukter)
+#' @return Data from [https://download.kortforsyningen.dk/content/geodataprodukter](https://download.kortforsyningen.dk/content/geodataprodukter).
 #'
 #' @examples
 #'
@@ -25,13 +25,19 @@
 
 dangeo_get_data <- function(ftp_folder = NULL,
                             zip_name = NULL,
-                            out_folder = NULL,
+                            out_folder = rappdirs::user_cache_dir(),
                             file_name = NULL,
                             userpwd = set_user){
 
+if(file_name %in% list.files(out_folder)) {
+
+  sf::read_sf(paste(out_folder, file_name, sep = "/"))
+
+  } else {
+
   ftp <- "ftp://ftp.kortforsyningen.dk"
   ftp_url <- paste(ftp, ftp_folder, "", sep = "/")
-  dir.create(out_folder)
+  fs::file_create(out_folder)
 
   # Download
   dl_h <- curl::new_handle()
@@ -52,5 +58,6 @@ dangeo_get_data <- function(ftp_folder = NULL,
   # Load file into R
   sf::read_sf(paste(out_folder, file_name, sep = "/"))
 
+  }
 }
 

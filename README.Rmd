@@ -37,7 +37,7 @@ library(dangeo)
  
 ```
 
-First we would need to set our Username (kortforsyningen_id = "XXX") and Password (kortforsyningen_pwd = "XXX") on .Renviron.
+First we would need to set our Username (kortforsyningen_id = "XXX") and Password (kortforsyningen_pwd = "XXX") on *.Renviron*.
 
 ```{r user}
 
@@ -46,13 +46,12 @@ set_user <- paste(Sys.getenv("kortforsyningen_id"), Sys.getenv("kortforsyningen_
 
 ```
 
-Then we can download the shapefiles (e.g. *DK_CORINE_SHP_UTM32-WGS84*).
+Then we can download the shapefiles (e.g. *DK_CORINE_SHP_UTM32-WGS84*). The files will be cached on a local directory (i.e. *rappdirs::user_cache_dir()*) but we can change the output directory (*out_folder = "./local/path"*).
 
 ```{r get_data}
 
 dangeo_get_data(ftp_folder = "CORINE",
                 zip_name   = "DK_CORINE_SHP_UTM32-WGS84.zip",
-                out_folder = "DK_CORINE_SHP_UTM32-WGS84",
                 file_name  = "CLC12_DK.shp")
 
 ```
