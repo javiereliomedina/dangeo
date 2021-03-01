@@ -36,7 +36,9 @@ Then we can download a “.zip” file
 (e.g. *DK\_CORINE\_SHP\_UTM32-WGS84.zip*) in our local directory by
 calling the function *dangeo\_get\_data()*. By default the local
 directory is defined as *out\_folder = rappdirs::user\_cache\_dir()* but
-we can change it (*out\_folder = “./local/path”*).
+we can change it (*out\_folder = “./local/path”*). The file will not be
+downloaded if it already exist in the folder, but we can overwrite it by
+setting *overwrite = TRUE*.
 
 ``` r
 dangeo_get_data(ftp_folder = "CORINE",

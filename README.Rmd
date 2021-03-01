@@ -46,7 +46,7 @@ set_user <- paste(Sys.getenv("kortforsyningen_id"), Sys.getenv("kortforsyningen_
 
 ```
 
-Then we can download a ".zip" file (e.g. *DK_CORINE_SHP_UTM32-WGS84.zip*) in our local directory by calling the function *dangeo_get_data()*. By default the local directory is defined as *out_folder = rappdirs::user_cache_dir()* but we can change it (*out_folder = "./local/path"*).
+Then we can download a ".zip" file (e.g. *DK_CORINE_SHP_UTM32-WGS84.zip*) in our local directory by calling the function *dangeo_get_data()*. By default the local directory is defined as *out_folder = rappdirs::user_cache_dir()* but we can change it (*out_folder = "./local/path"*). The file will not be downloaded if it already exist in the folder, but we can overwrite it by setting *overwrite = TRUE*.
 
 ```{r get_data}
 

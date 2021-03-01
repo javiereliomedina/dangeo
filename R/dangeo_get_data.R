@@ -70,3 +70,4 @@ dangeo_get_data <- function(ftp_folder = NULL,
 
   }
 }
+
