@@ -28,18 +28,16 @@ dangeo_get_data <- function(ftp_folder = NULL,
                             userpwd = set_user,
                             overwrite = FALSE){
 
+  ftp <- paste0("ftp://", set_user, "@ftp.kortforsyningen.dk")
+  ftp_url <- paste(ftp, ftp_folder, zip_name, sep = "/")
+  fs::file_create(out_folder)
+
   if(overwrite == TRUE) {
 
-    ftp <- "ftp://ftp.kortforsyningen.dk"
-    ftp_url <- paste(ftp, ftp_folder, "", sep = "/")
-    fs::file_create(out_folder)
-
     # Download
-    dl_h <- curl::new_handle(CONNECTTIMEOUT = 80)
-    curl::handle_setopt(dl_h, userpwd = set_user, ftp_use_epsv = TRUE)
-    curl::curl_fetch_disk(url = paste0(ftp_url, zip_name),
-                          path = paste(out_folder, zip_name, sep = "/"),
-                          handle = dl_h)
+    download.file(url = ftp_url,
+                  destfile = paste(out_folder, zip_name, sep = "/"),
+                  method = "curl")
 
     # Unzip file and remove it (.zip)
     unzip(zipfile = paste(out_folder, zip_name, sep = "/"),
@@ -52,16 +50,10 @@ dangeo_get_data <- function(ftp_folder = NULL,
 
   } else {
 
-    ftp <- "ftp://ftp.kortforsyningen.dk"
-    ftp_url <- paste(ftp, ftp_folder, "", sep = "/")
-    fs::file_create(out_folder)
-
     # Download
-    dl_h <- curl::new_handle(CONNECTTIMEOUT = 80)
-    curl::handle_setopt(dl_h, userpwd = set_user, ftp_use_epsv = TRUE)
-    curl::curl_fetch_disk(url = paste0(ftp_url, zip_name),
-                          path = paste(out_folder, zip_name, sep = "/"),
-                          handle = dl_h)
+    download.file(url = ftp_url,
+                  destfile = paste(out_folder, zip_name, sep = "/"),
+                  method = "curl")
 
     # Unzip file and remove it (.zip)
     unzip(zipfile = paste(out_folder, zip_name, sep = "/"),
