@@ -8,7 +8,8 @@ dangeo_get_data(
   ftp_folder = NULL,
   zip_name = NULL,
   out_folder = rappdirs::user_cache_dir(),
-  userpwd = set_user
+  userpwd = set_user,
+  overwrite = FALSE
 )
 }
 \arguments{
@@ -19,6 +20,8 @@ dangeo_get_data(
 \item{out_folder}{Name of the local folder where the data will be saved (by default it is set to the results of rappdirs::user_cache_dir()).}
 
 \item{userpwd}{Username and Password (format = USERNAME:PASSWORD).}
+
+\item{overwrite}{Overwrite previous files (by default overwrite = FALSE)}
 }
 \value{
 Data from \url{https://download.kortforsyningen.dk/content/geodataprodukter}.
@@ -34,7 +37,7 @@ Function for downloading geodata from kortforsyningen.dk
   set_user <- paste(id, password, sep = ":" )
 
 # Get data
-dangeo_get_data(ftp_folder = "CORINE",
+dangeo::dangeo_get_data(ftp_folder = "CORINE",
                 zip_name   = "DK_CORINE_SHP_UTM32-WGS84.zip")
 
 }

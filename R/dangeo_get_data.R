@@ -16,7 +16,7 @@
 #'   set_user <- paste(id, password, sep = ":" )
 #'
 #' # Get data
-#' dangeo_get_data(ftp_folder = "CORINE",
+#' dangeo::dangeo_get_data(ftp_folder = "CORINE",
 #'                 zip_name   = "DK_CORINE_SHP_UTM32-WGS84.zip")
 #'
 #' @export
@@ -48,7 +48,7 @@ dangeo_get_data <- function(ftp_folder = NULL,
 
   } else if(gsub(".zip", "", zip_name) %in% list.files(out_folder)) {
 
-    print("Warning: the files already exist on the local directory and thay have not been downloaded")
+    print("Warning: the files already exist on the local directory and they have not been downloaded")
 
   } else {
 
