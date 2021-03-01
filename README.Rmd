@@ -46,12 +46,11 @@ set_user <- paste(Sys.getenv("kortforsyningen_id"), Sys.getenv("kortforsyningen_
 
 ```
 
-Then we can download the shapefiles (e.g. *DK_CORINE_SHP_UTM32-WGS84*). The files will be cached on a local directory (i.e. *rappdirs::user_cache_dir()*) but we can change the output directory (*out_folder = "./local/path"*).
+Then we can download a ".zip" file (e.g. *DK_CORINE_SHP_UTM32-WGS84.zip*) in our local directory by calling the function *dangeo_get_data()*. By default the local directory is defined as *out_folder = rappdirs::user_cache_dir()* but we can change it (*out_folder = "./local/path"*).
 
 ```{r get_data}
 
 dangeo_get_data(ftp_folder = "CORINE",
-                zip_name   = "DK_CORINE_SHP_UTM32-WGS84.zip",
-                file_name  = "CLC12_DK.shp")
+                zip_name   = "DK_CORINE_SHP_UTM32-WGS84.zip")
 
 ```

@@ -3,7 +3,6 @@
 #' @param ftp_folder Name of the ftp folder
 #' @param zip_name   Name of the zip file we would like to download..
 #' @param out_folder Name of the local folder where the data will be saved (by default it is set to the results of rappdirs::user_cache_dir()).
-#' @param file_name  Name of the file (e.g. *.shp) we would like to load into R.
 #' @param userpwd    Username and Password (format = USERNAME:PASSWORD).
 #'
 #' @return Data from [https://download.kortforsyningen.dk/content/geodataprodukter](https://download.kortforsyningen.dk/content/geodataprodukter).
@@ -17,47 +16,29 @@
 #'
 #' # Get data
 #' dangeo_get_data(ftp_folder = "CORINE",
-#'                 zip_name   = "DK_CORINE_SHP_UTM32-WGS84.zip",
-#'                 out_folder = "DK_CORINE_SHP_UTM32-WGS84",
-#'                 file_name  = "CLC12_DK.shp")
+#'                 zip_name   = "DK_CORINE_SHP_UTM32-WGS84.zip")
 #'
 #' @export
 
 dangeo_get_data <- function(ftp_folder = NULL,
                             zip_name = NULL,
                             out_folder = rappdirs::user_cache_dir(),
-                            file_name = NULL,
                             userpwd = set_user){
-
-if(file_name %in% list.files(out_folder)) {
-
-  sf::read_sf(paste(out_folder, file_name, sep = "/"))
-
-  } else {
 
   ftp <- "ftp://ftp.kortforsyningen.dk"
   ftp_url <- paste(ftp, ftp_folder, "", sep = "/")
   fs::file_create(out_folder)
 
   # Download
-  dl_h <- curl::new_handle()
+  dl_h <- curl::new_handle(CONNECTTIMEOUT = 80)
   curl::handle_setopt(dl_h, userpwd = set_user, ftp_use_epsv = TRUE)
   curl::curl_fetch_disk(url = paste0(ftp_url, zip_name),
                         path = paste(out_folder, zip_name, sep = "/"),
                         handle = dl_h)
 
-
   # Unzip file and remove it (.zip)
   unzip(zipfile = paste(out_folder, zip_name, sep = "/"),
-        exdir   = out_folder)
+        exdir   = gsub(".zip", "", paste(out_folder, zip_name, sep = "/")))
   fs::file_delete(paste(out_folder, zip_name, sep = "/"))
 
-  # Move all files to parent directory
-  fs::file_move(list.files(out_folder, recursive = TRUE, full.names = TRUE), out_folder)
-
-  # Load file into R
-  sf::read_sf(paste(out_folder, file_name, sep = "/"))
-
-  }
 }
-
