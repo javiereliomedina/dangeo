@@ -24,21 +24,27 @@ dangeo_get_data <- function(ftp_folder = NULL,
                             zip_name = NULL,
                             out_folder = rappdirs::user_cache_dir(),
                             userpwd = set_user){
+  if(gsub(".zip", "", zip_name) %in% list.files(out_folder)) {
 
-  ftp <- "ftp://ftp.kortforsyningen.dk"
-  ftp_url <- paste(ftp, ftp_folder, "", sep = "/")
-  fs::file_create(out_folder)
+    print("Warning: the files already exist on the local directory and thay have not been downloaded")
 
-  # Download
-  dl_h <- curl::new_handle(CONNECTTIMEOUT = 80)
-  curl::handle_setopt(dl_h, userpwd = set_user, ftp_use_epsv = TRUE)
-  curl::curl_fetch_disk(url = paste0(ftp_url, zip_name),
-                        path = paste(out_folder, zip_name, sep = "/"),
-                        handle = dl_h)
+  } else {
 
-  # Unzip file and remove it (.zip)
-  unzip(zipfile = paste(out_folder, zip_name, sep = "/"),
-        exdir   = gsub(".zip", "", paste(out_folder, zip_name, sep = "/")))
-  fs::file_delete(paste(out_folder, zip_name, sep = "/"))
+    ftp <- "ftp://ftp.kortforsyningen.dk"
+    ftp_url <- paste(ftp, ftp_folder, "", sep = "/")
+    fs::file_create(out_folder)
 
+    # Download
+    dl_h <- curl::new_handle(CONNECTTIMEOUT = 80)
+    curl::handle_setopt(dl_h, userpwd = set_user, ftp_use_epsv = TRUE)
+    curl::curl_fetch_disk(url = paste0(ftp_url, zip_name),
+                          path = paste(out_folder, zip_name, sep = "/"),
+                          handle = dl_h)
+
+    # Unzip file and remove it (.zip)
+    unzip(zipfile = paste(out_folder, zip_name, sep = "/"),
+          exdir   = gsub(".zip", "", paste(out_folder, zip_name, sep = "/")))
+    fs::file_delete(paste(out_folder, zip_name, sep = "/"))
+
+  }
 }
