@@ -7,8 +7,6 @@ Package to access to the Map Supply Download via the kortforsyningen
 FTP. You would need to create an account on
 [kortforsyningen](https://www.kortforsyningen.dk/indhold/min-side-0).
 
-## Instalation
-
 ## Installation
 
 ``` r
