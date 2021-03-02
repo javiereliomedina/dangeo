@@ -49,7 +49,7 @@ dangeo_set_param()
 
 Then we can download a ".zip" file (e.g. *DK_CORINE_SHP_UTM32-WGS84.zip*) in our local directory by calling the function *dangeo_get_data()*. The file will not be downloaded if it is already in the local directory, but we can overwrite it by setting *overwrite = TRUE*.
 
-```{r download-data}
+```{r download-data, results='hide'}
 
 dangeo_get_data(ftp_folder = "CORINE",
                 zip_name   = "DK_CORINE_SHP_UTM32-WGS84.zip")
