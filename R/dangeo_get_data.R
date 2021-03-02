@@ -10,13 +10,13 @@
 #'
 #' @examples
 #'
-#' # Set Username and Passwordm in .Renviron (usethis::edit_r_environ())
-#'   id <- Sys.getenv("kortforsyningen_id")
-#'   password <- Sys.getenv("kortforsyningen_pwd")
-#'   set_user <- paste(id, password, sep = ":" )
+#' library(dangeo)
 #'
-#' # Get data
-#' dangeo::dangeo_get_data(ftp_folder = "CORINE",
+#' # Set username, password, and local directory
+#' dangeo_set_param()
+#'
+#' # Download data
+#' dangeo_get_data(ftp_folder = "CORINE",
 #'                 zip_name   = "DK_CORINE_SHP_UTM32-WGS84.zip")
 #'
 #' @export
@@ -24,7 +24,7 @@
 
 dangeo_get_data <- function(ftp_folder = NULL,
                             zip_name = NULL,
-                            out_folder = rappdirs::user_cache_dir(),
+                            out_folder = loc_dir,
                             userpwd = set_user,
                             overwrite = FALSE){
 

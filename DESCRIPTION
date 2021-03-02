@@ -15,6 +15,5 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports: 
   rappdirs (>= 0.3.3),
-  sf (>= 0.9-7),
   fs (>= 1.5.0), 
   curl (>= 4.3),
