@@ -1,4 +1,7 @@
 
+[![License:
+MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 # dangeo
 
 ## Overview
@@ -46,4 +49,5 @@ it by setting *overwrite = TRUE*.
 ``` r
 dangeo_get_data(ftp_folder = "CORINE",
                 zip_name   = "DK_CORINE_SHP_UTM32-WGS84.zip")
+#> [1] "Warning: the files already exist on the local directory and they have not been downloaded"
 ```
