@@ -46,7 +46,7 @@ dangeo_get_data <- function(ftp_folder = NULL,
 
   } else if(gsub(".zip", "", zip_name) %in% list.files(out_folder)) {
 
-    warning("The files already exist on the local directory and they have not been downloaded. Set overwrite = TRUE if you would like to overwrite the existing files")
+    warning("The file already exist on the local directory and it has not been downloaded. Set overwrite = TRUE if you would like to overwrite it")
 
   } else {
 
