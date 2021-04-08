@@ -46,7 +46,7 @@ dangeo_get_data <- function(ftp_folder = NULL,
 
   } else if(gsub(".zip", "", zip_name) %in% list.files(out_folder)) {
 
-    print("Warning: the files already exist on the local directory and they have not been downloaded")
+    warning("The files already exist on the local directory and they have not been downloaded")
 
   } else {
 
