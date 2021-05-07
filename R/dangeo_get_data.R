@@ -5,6 +5,7 @@
 #' @param out_folder Name of the local folder where the data will be saved (by default it is set to the results of rappdirs::user_cache_dir()).
 #' @param overwrite  Overwrite previous files (by default overwrite = FALSE)
 #' @param userpwd    Username and Password (format = USERNAME:PASSWORD).
+#' @param unzip      Logical parameter indication if the file should be unzipped (TRUE) or not (FALSE)
 #'
 #' @return Data from [https://download.kortforsyningen.dk/content/geodataprodukter](https://download.kortforsyningen.dk/content/geodataprodukter).
 #'
@@ -26,7 +27,8 @@ dangeo_get_data <- function(ftp_folder = NULL,
                             zip_name = NULL,
                             out_folder = loc_dir,
                             userpwd = set_user,
-                            overwrite = FALSE){
+                            overwrite = FALSE,
+                            unzip = TRUE){
 
   ftp <- paste0("ftp://", set_user, "@ftp.kortforsyningen.dk")
   ftp_url <- paste(ftp, ftp_folder, zip_name, sep = "/")
@@ -34,15 +36,26 @@ dangeo_get_data <- function(ftp_folder = NULL,
 
   if(overwrite == TRUE) {
 
-    # Download
-    download.file(url = ftp_url,
-                  destfile = paste(out_folder, zip_name, sep = "/"),
-                  method = "curl")
+    if(unzip == TRUE) {
 
-    # Unzip file and remove it (.zip)
-    unzip(zipfile = paste(out_folder, zip_name, sep = "/"),
-          exdir   = gsub(".zip", "", paste(out_folder, zip_name, sep = "/")))
-    fs::file_delete(paste(out_folder, zip_name, sep = "/"))
+      # Download
+      download.file(url = ftp_url,
+                    destfile = paste(out_folder, zip_name, sep = "/"),
+                    method = "curl")
+
+      # Unzip file and remove it (.zip)
+      unzip(zipfile = paste(out_folder, zip_name, sep = "/"),
+            exdir   = gsub(".zip", "", paste(out_folder, zip_name, sep = "/")))
+      fs::file_delete(paste(out_folder, zip_name, sep = "/"))
+
+    } else {
+
+      # Download
+      download.file(url = ftp_url,
+                    destfile = paste(out_folder, zip_name, sep = "/"),
+                    method = "curl")
+
+    }
 
   } else if(gsub(".zip", "", zip_name) %in% list.files(out_folder)) {
 
@@ -50,16 +63,26 @@ dangeo_get_data <- function(ftp_folder = NULL,
 
   } else {
 
-    # Download
-    download.file(url = ftp_url,
-                  destfile = paste(out_folder, zip_name, sep = "/"),
-                  method = "curl")
+    if(unzip == TRUE) {
 
-    # Unzip file and remove it (.zip)
-    unzip(zipfile = paste(out_folder, zip_name, sep = "/"),
-          exdir   = gsub(".zip", "", paste(out_folder, zip_name, sep = "/")))
-    fs::file_delete(paste(out_folder, zip_name, sep = "/"))
+      # Download
+      download.file(url = ftp_url,
+                    destfile = paste(out_folder, zip_name, sep = "/"),
+                    method = "curl")
+
+      # Unzip file and remove it (.zip)
+      unzip(zipfile = paste(out_folder, zip_name, sep = "/"),
+            exdir   = gsub(".zip", "", paste(out_folder, zip_name, sep = "/")))
+      fs::file_delete(paste(out_folder, zip_name, sep = "/"))
+
+    } else {
+
+      # Download
+      download.file(url = ftp_url,
+                    destfile = paste(out_folder, zip_name, sep = "/"),
+                    method = "curl")
+
+    }
 
   }
 }
-

@@ -9,7 +9,8 @@ dangeo_get_data(
   zip_name = NULL,
   out_folder = loc_dir,
   userpwd = set_user,
-  overwrite = FALSE
+  overwrite = FALSE,
+  unzip = TRUE
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ dangeo_get_data(
 \item{userpwd}{Username and Password (format = USERNAME:PASSWORD).}
 
 \item{overwrite}{Overwrite previous files (by default overwrite = FALSE)}
+
+\item{unzip}{Logical parameter indication if the file should be unzipped (TRUE) or not (FALSE)}
 }
 \value{
 Data from \url{https://download.kortforsyningen.dk/content/geodataprodukter}.
