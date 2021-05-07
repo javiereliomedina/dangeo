@@ -45,7 +45,7 @@ dangeo_get_data <- function(ftp_folder = NULL,
 
       # Unzip file and remove it (.zip)
       unzip(zipfile = paste(out_folder, zip_name, sep = "/"),
-            exdir   = gsub(".zip", "", paste(out_folder, zip_name, sep = "/")))
+            exdir   = gsub(".zip|.ZIP", "", paste(out_folder, zip_name, sep = "/")))
       fs::file_delete(paste(out_folder, zip_name, sep = "/"))
 
     } else {
@@ -72,7 +72,7 @@ dangeo_get_data <- function(ftp_folder = NULL,
 
       # Unzip file and remove it (.zip)
       unzip(zipfile = paste(out_folder, zip_name, sep = "/"),
-            exdir   = gsub(".zip", "", paste(out_folder, zip_name, sep = "/")))
+            exdir   = gsub(".zip|.ZIP", "", paste(out_folder, zip_name, sep = "/")))
       fs::file_delete(paste(out_folder, zip_name, sep = "/"))
 
     } else {
